@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public static GameManager Instance;
 
-    [HideInInspector] sceneChanger screen;
 
 	private void Awake()
 	{
@@ -24,7 +23,7 @@ public class GameManager : MonoBehaviour
 	}
 	void Start()
     {
-        screen = FindObjectOfType<sceneChanger>();
+
     }
 
     // Update is called once per frame
@@ -41,10 +40,9 @@ public class GameManager : MonoBehaviour
     public static void foundTorch()
 	{
         numTorches--;
-	}
-
-    public static void changeScene()
-	{
-
+        if (numTorches <= 0)
+		{
+            sceneChanger.Instance.nextScene();
+		}
 	}
 }

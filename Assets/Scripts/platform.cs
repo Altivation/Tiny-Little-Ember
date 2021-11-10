@@ -5,10 +5,10 @@ using UnityEngine;
 public class platform : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] PlatformEffector2D plat;
+        PlatformEffector2D plat;
     void Start()
     {
-        
+        plat = GetComponent<PlatformEffector2D>();
     }
 
     // Update is called once per frame

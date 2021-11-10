@@ -6,7 +6,8 @@ public class sceneChanger : MonoBehaviour
 {
     // Start is called before the first frame update
     [HideInInspector] public static sceneChanger Instance;
-    Animator anim;
+    public static float duration = 0.5f;
+    static Animator anim;
 
 	private void Awake()
 	{
@@ -21,7 +22,7 @@ public class sceneChanger : MonoBehaviour
 	}
 	void Start()
     {
-        
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -30,13 +31,31 @@ public class sceneChanger : MonoBehaviour
         
     }
 
-    public static void nextScene()
+    public void nextScene()
 	{
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        StartCoroutine(fadeOut(true));
 	}
 
-    public static void resetScene()
+    public void resetScene()
 	{
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartCoroutine(fadeOut(false));
+	}
+
+    IEnumerator fadeOut(bool different)
+	{
+        anim.SetTrigger("fadeOut");
+        float elapsed = 0f;
+        while (elapsed <= duration)
+		{
+            yield return null;
+		}
+        if (different)
+		{
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        } else
+		{
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        anim.SetTrigger("fadeIn");
 	}
 }

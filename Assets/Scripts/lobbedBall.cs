@@ -7,28 +7,30 @@ public class lobbedBall : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] float force;
     [SerializeField] int bounces;
-    [SerializeField] float survivalTime;
 
-    float currTime;
     bool direction;
     movement player;
     Rigidbody2D rb;
+    SpriteRenderer sr;
 
 	private void Awake()
 	{
         player = FindObjectOfType<movement>();
         rb = GetComponent<Rigidbody2D>();
-        direction = !player.sr.flipX;
-        currTime = 0;
-	}
+        direction = player.direction;
+        Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
+        sr = FindObjectOfType<SpriteRenderer>();
+    }
 	void Start()
     {
         if (direction)
 		{
             rb.AddForce(Vector2.left * force, ForceMode2D.Impulse);
+            sr.flipX = true;
 		} else
 		{
             rb.AddForce(Vector2.right * force, ForceMode2D.Impulse);
+            sr.flipX = false;
         }
     }
 

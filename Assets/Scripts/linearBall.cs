@@ -8,10 +8,13 @@ public class linearBall : MonoBehaviour
     [SerializeField] float speed;
     bool direction;
     movement player;
+	SpriteRenderer sr;
 	private void Awake()
 	{
         player = FindObjectOfType<movement>();
-        direction = player.sr.flipX;
+		direction = player.direction;
+		Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
+		sr = FindObjectOfType<SpriteRenderer>();
 	}
 	void Start()
     {
@@ -24,9 +27,11 @@ public class linearBall : MonoBehaviour
         if (direction)
 		{
             transform.Translate(Vector3.left * speed * Time.deltaTime);
+			sr.flipX = true;
 		} else
 		{
-            transform.Translate(Vector3.left * speed * Time.deltaTime);
+            transform.Translate(Vector3.right * speed * Time.deltaTime);
+			sr.flipX = true;
 		}
     }
 

@@ -10,13 +10,14 @@ public class movement : MonoBehaviour
     public float airspeed;
     public float jumpforce;
     [HideInInspector] public bool onground;
-
-    [HideInInspector] public SpriteRenderer sr;
+    [HideInInspector] public bool direction; //left is true
+    SpriteRenderer sr;
     [HideInInspector] public Rigidbody2D rb;
 
 	private void Awake()
 	{
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         onground = false;
 	}
 	void Start()
@@ -29,6 +30,8 @@ public class movement : MonoBehaviour
     {
         if (Input.GetKey("a") || Input.GetKey("left"))
 		{
+            direction = true;
+            sr.flipX = true;
             if (onground)
 			{
                 transform.Translate(Vector2.left * speed * Time.deltaTime);
@@ -40,6 +43,8 @@ public class movement : MonoBehaviour
         } 
         if (Input.GetKey("d") || Input.GetKey("right"))
 		{
+            direction = false;
+            sr.flipX = false;
             if (onground)
             {
                 transform.Translate(Vector2.right * speed * Time.deltaTime);

@@ -20,13 +20,12 @@ public class Jumping : MonoBehaviour
             move.rb.AddForce(Vector3.up * jumpforce, ForceMode2D.Impulse);
         }
     }
-
-	private void OnCollisionEnter2D(Collision2D collision)
+	private void OnTriggerEnter2D(Collider2D collision)
 	{
         move.onground = true;
-	}
-
-	private void OnCollisionExit2D(Collision2D collision)
+    }
+    
+	private void OnTriggerExit2D(Collider2D collision)
 	{
         move.onground = false;
 	}
