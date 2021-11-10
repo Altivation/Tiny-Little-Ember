@@ -12,6 +12,7 @@ public class movement : MonoBehaviour
     [HideInInspector] public bool onground;
 
     [HideInInspector] public Rigidbody2D rb;
+    [HideInInspector] public SpriteRenderer sr;
 
 	private void Awake()
 	{
