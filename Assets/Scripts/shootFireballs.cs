@@ -5,6 +5,7 @@ using UnityEngine;
 public class shootFireballs : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField] 
     void Start()
     {
         

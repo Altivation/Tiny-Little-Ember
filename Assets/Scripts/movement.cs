@@ -11,6 +11,7 @@ public class movement : MonoBehaviour
     public float jumpforce;
     [HideInInspector] public bool onground;
 
+    [HideInInspector] public SpriteRenderer sr;
     [HideInInspector] public Rigidbody2D rb;
 
 	private void Awake()
