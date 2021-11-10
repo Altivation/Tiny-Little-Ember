@@ -10,7 +10,9 @@ public class candle : MonoBehaviour
 	private void Awake()
 	{
         anim = GetComponent<Animator>();
+        GameManager.numTorches++;
 	}
+
 	void Start()
     {
         

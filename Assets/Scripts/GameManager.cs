@@ -33,10 +33,9 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public static void countTorches()
+    public static void resetTorches()
 	{
-        var candles = FindObjectsOfType<candle>();
-        numTorches = candles.Length;
+        numTorches = 0;
 	}
 
     public static void foundTorch()
