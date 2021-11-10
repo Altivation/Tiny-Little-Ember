@@ -12,6 +12,10 @@ public class linearBall : MonoBehaviour
 	private void Awake()
 	{
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        player = FindObjectOfType<movement>();
+>>>>>>> Stashed changes
 =======
         player = FindObjectOfType<movement>();
 >>>>>>> Stashed changes
@@ -28,22 +32,29 @@ public class linearBall : MonoBehaviour
         if (direction)
 		{
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             transform.Translate(speed * Vector2.left * Time.deltaTime);
 		} else
 		{
             transform.Translate(speed * Vector2.right * Time.deltaTime);
 		}
 =======
+=======
+>>>>>>> Stashed changes
             transform.Translate(Vector2.left * speed * Time.deltaTime);
 		} else
 		{
             transform.Translate(Vector2.right * speed * Time.deltaTime);
         }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 		if (collision.gameObject.tag == "ice" || collision.gameObject.tag == "breaks")
 		{
@@ -56,6 +67,8 @@ public class linearBall : MonoBehaviour
 	{
 		Destroy(gameObject);
 =======
+=======
+>>>>>>> Stashed changes
         if (collision.gameObject.tag == "ice" || collision.gameObject.tag == "cracked")
         {
             Destroy(collision.gameObject);
@@ -66,6 +79,9 @@ public class linearBall : MonoBehaviour
     private void onBecameInvisible()
 	{
         Destroy(gameObject);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 	}
 }

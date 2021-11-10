@@ -6,6 +6,7 @@ public class shootFireballs : MonoBehaviour
 {
     // Start is called before the first frame update
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     [SerializeField] linearBall linearball;
     [SerializeField] lobbedBall lobbedball;
     [SerializeField] float rateOfFire;
@@ -25,6 +26,17 @@ public class shootFireballs : MonoBehaviour
     {
         currTime = 0;   
 >>>>>>> Stashed changes
+=======
+    [SerializeField] lobBall lobball;
+    [SerializeField] linearBall linearball;
+    [SerializeField] float timePerShot;
+    [SerializeField] Vector3 spawningAdjust;
+
+    float currTime;
+    void Start()
+    {
+        currTime = 0;   
+>>>>>>> Stashed changes
     }
 
     // Update is called once per frame
@@ -33,7 +45,11 @@ public class shootFireballs : MonoBehaviour
         currTime += Time.deltaTime;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         if (currTime >= rateOfFire)
+=======
+        if (currTime >= timePerShot)
+>>>>>>> Stashed changes
 =======
         if (currTime >= timePerShot)
 >>>>>>> Stashed changes
@@ -47,7 +63,11 @@ public class shootFireballs : MonoBehaviour
                 spawnLobbed();
 			}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		}
+=======
+		} 
+>>>>>>> Stashed changes
 =======
 		} 
 >>>>>>> Stashed changes
@@ -56,7 +76,11 @@ public class shootFireballs : MonoBehaviour
     public void spawnLinear()
 	{
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         Instantiate(linearball, spawnAdjust + transform.position, Quaternion.identity);
+=======
+        Instantiate(linearball, transform.position - spawningAdjust, Quaternion.identity);
+>>>>>>> Stashed changes
 =======
         Instantiate(linearball, transform.position - spawningAdjust, Quaternion.identity);
 >>>>>>> Stashed changes
@@ -65,7 +89,11 @@ public class shootFireballs : MonoBehaviour
     public void spawnLobbed()
 	{
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         Instantiate(lobbedball, spawnAdjust + transform.position, Quaternion.identity);
+=======
+        Instantiate(lobball, transform.position - spawningAdjust, Quaternion.identity);
+>>>>>>> Stashed changes
 =======
         Instantiate(lobball, transform.position - spawningAdjust, Quaternion.identity);
 >>>>>>> Stashed changes

@@ -14,8 +14,12 @@ public class movement : MonoBehaviour
     [HideInInspector] public SpriteRenderer sr;
     [HideInInspector] public Rigidbody2D rb;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     [HideInInspector] public SpriteRenderer sr;
 
+=======
+    Animator anim;
+>>>>>>> Stashed changes
 =======
     Animator anim;
 >>>>>>> Stashed changes

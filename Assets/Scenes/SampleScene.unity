@@ -539,8 +539,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1410097895}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   SmoothSpeed: 0
   offset: {x: 0, y: 0, z: 0}
+=======
+  SmoothSpeed: 0.05
+  offset: {x: 0, y: 0, z: -10}
+>>>>>>> Stashed changes
 =======
   SmoothSpeed: 0.05
   offset: {x: 0, y: 0, z: -10}
@@ -919,6 +924,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!1 &1352460296
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1285,6 +1291,8 @@ Rigidbody2D:
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!1 &1482342007
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 GameObject:
