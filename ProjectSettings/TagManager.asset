@@ -4,9 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - player
   - ice
-  - snow
   - cracked
   layers:
   - Default
@@ -44,6 +42,18 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Blocks
+    uniqueID: 2623312599
+    locked: 0
+  - name: Characters
+    uniqueID: 3466513289
+    locked: 0
+  - name: Items
+    uniqueID: 2657108441
+    locked: 0
+  - name: Fireballs
+    uniqueID: 3634219725
     locked: 0
   - name: UI
     uniqueID: 463813521
