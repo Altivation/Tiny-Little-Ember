@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class iceContact : MonoBehaviour
+public class hearth : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] float lossPerRate;
+    [SerializeField] float ratePerSecond;
     bool inContact;
     void Start()
     {
@@ -17,7 +17,7 @@ public class iceContact : MonoBehaviour
     {
         if (inContact)
 		{
-            heatManager.loseHeat(lossPerRate * Time.deltaTime);
+            heatManager.gainHeat(ratePerSecond * Time.deltaTime);
 		}
     }
 
