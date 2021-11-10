@@ -10,7 +10,7 @@ public class heatManager : MonoBehaviour
     [SerializeField] public static float maxHeat = 100;
     [SerializeField] public static float currHeat = maxHeat;
     [SerializeField] public float melting_point;
-    Thermometer thermo;
+    static Thermometer thermo;
     void Start()
     {
         thermo = FindObjectOfType<Thermometer>();
