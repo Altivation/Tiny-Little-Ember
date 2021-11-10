@@ -14,12 +14,12 @@ public class platform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("down"))
+        if (Input.GetKeyDown("down") || Input.GetKeyDown("s"))
 		{
             plat.rotationalOffset = 180;
 		}
 
-        if (Input.GetKeyUp("down"))
+        if (Input.GetKeyUp("down") || Input.GetKeyUp("s"))
 		{
             plat.rotationalOffset = 0;
 		}

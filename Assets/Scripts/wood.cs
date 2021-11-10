@@ -20,7 +20,7 @@ public class wood : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.gameObject.tag == "player")
+		if (collision.gameObject.tag == "Player")
 		{
             consumed();
 		}
