@@ -21,19 +21,21 @@ public class iceContact : MonoBehaviour
 		}
     }
 
-	private void OnTriggerEnter2D(Collider2D collision)
+	private void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.gameObject.tag == "Player")
 		{
             inContact = true;
+			musicManager.Instance.playFrost();
 		}
 	}
 
-	private void OnTriggerExit2D(Collider2D collision)
+	private void OnCollisionExit2D(Collision2D collision)
 	{
 		if (collision.gameObject.tag == "Player")
 		{
 			inContact = false;
+			musicManager.Instance.pauseFrost();
 		}
 	}
 }

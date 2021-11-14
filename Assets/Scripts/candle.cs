@@ -6,11 +6,13 @@ public class candle : MonoBehaviour
 {
     // Start is called before the first frame update
     Animator anim;
+    bool lit;
 
 	private void Awake()
 	{
         anim = GetComponent<Animator>();
         GameManager.numTorches++;
+        lit = false;
 	}
 
 	void Start()
@@ -26,9 +28,10 @@ public class candle : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.gameObject.tag == "Player")
+		if (collision.gameObject.tag == "Player" && !lit)
 		{
             litTorch();
+            lit = true;
 		}
 	}
 

@@ -27,47 +27,52 @@ public class musicManager : MonoBehaviour
         }
     }
 
-    void playBG()
+    public void playBG()
     {
         bg.Play();
     }
-    void playHearth()
+    public void playHearth()
     {
         fire.Play();
     }
 
-    void stopHearth()
+    public void stopHearth()
     {
         fire.Pause();
     }
 
-    void Ignite()
+    public void playFrost()
+	{
+        cold.Play();
+	}
+    
+    public void pauseFrost()
+	{
+        cold.Pause();
+	}
+
+    public void Ignite()
     {
         ignite.Play();
     }
 
 
-    void Shoot()
+    public void Shoot()
     {
         shoot.Play();
     }
 
-    void setShoot(float val)
+    public void setShoot(float val)
     {
         shoot.volume = val * 0.3f;
     }
 
-    void Splat()
+    public void Splat()
     {
         splat.Play();
     }
 
-    void setSplat(float val)
-    {
-        splat.volume = val * 0.8f;
-    }
-
-    void Jump()
+    public void Jump()
     {
         jump.Play();
     }

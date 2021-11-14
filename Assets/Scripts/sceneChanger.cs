@@ -6,8 +6,9 @@ public class sceneChanger : MonoBehaviour
 {
     // Start is called before the first frame update
     [HideInInspector] public static sceneChanger Instance;
-    public static float duration = 0.5f;
+    [SerializeField] public float duration = 0.5f;
     static Animator anim;
+    static bool loading;
 
 	private void Awake()
 	{
@@ -19,6 +20,7 @@ public class sceneChanger : MonoBehaviour
 		{
             Destroy(gameObject);
 		}
+        loading = false;
 	}
 	void Start()
     {
@@ -33,29 +35,57 @@ public class sceneChanger : MonoBehaviour
 
     public void nextScene()
 	{
-        StartCoroutine(fadeOut(true));
+        if (!loading)
+		{
+            StartCoroutine(fadeOut(true));
+            loading = true;
+        }
+
 	}
 
     public void resetScene()
 	{
-        StartCoroutine(fadeOut(false));
+        if (!loading)
+		{
+            StartCoroutine(fadeOut(false));
+            loading = true;
+        }
+
 	}
 
     IEnumerator fadeOut(bool different)
 	{
         anim.SetTrigger("fadeOut");
-        float elapsed = 0f;
-        while (elapsed <= duration)
+        while (anim.GetCurrentAnimatorStateInfo(0).IsName("Default")) 
+		{   
+            yield return null;
+		}
+        while (anim.GetCurrentAnimatorStateInfo(0).IsName("fadeOut") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1)
 		{
             yield return null;
 		}
+       
         if (different)
 		{
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         } else
 		{
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 0);
         }
         anim.SetTrigger("fadeIn");
-	}
+        while (anim.GetCurrentAnimatorStateInfo(0).IsName("fadeOut"))
+		{
+            yield return null;
+		}
+        while(anim.GetCurrentAnimatorStateInfo(0).IsName("fadeIn") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1)
+		{
+            yield return null;
+		}
+        anim.SetTrigger("return");
+        while(anim.GetCurrentAnimatorStateInfo(0).IsName("fadeIn"))
+		{
+            yield return null;
+		}
+        loading = false;
+    }
 }

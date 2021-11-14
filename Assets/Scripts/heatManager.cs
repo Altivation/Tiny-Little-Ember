@@ -14,12 +14,13 @@ public class heatManager : MonoBehaviour
     void Start()
     {
         thermo = FindObjectOfType<Thermometer>();
+        currHeat = maxHeat;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        changeThermometer();
     }
 
     public static bool hasEnough(float i)
@@ -60,7 +61,7 @@ public class heatManager : MonoBehaviour
 
     public static void atZero()
 	{
-        //call things to trigger at 0
+        sceneChanger.Instance.resetScene();
 	}
 
 }

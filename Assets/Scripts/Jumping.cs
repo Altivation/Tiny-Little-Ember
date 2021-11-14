@@ -17,15 +17,17 @@ public class Jumping : MonoBehaviour
     void Update()
     {
         if ((Input.GetKey("up") || Input.GetKey("w")) && move.onground && move.rb.velocity.y <= 0) {
+            move.rb.velocity = new Vector2(move.rb.velocity.x, 0);
             move.rb.AddForce(Vector3.up * jumpforce, ForceMode2D.Impulse);
+            musicManager.Instance.Jump();
         }
     }
-	private void OnTriggerEnter2D(Collider2D collision)
+	private void OnCollisionEnter2D(Collision2D collision)
 	{
         move.onground = true;
     }
     
-	private void OnTriggerExit2D(Collider2D collision)
+	private void OnCollisionExit2D(Collision2D collision)
 	{
         move.onground = false;
 	}
