@@ -37,7 +37,20 @@ public class candle : MonoBehaviour
 
     public void litTorch()
 	{
-        GameManager.foundTorch();
+        StartCoroutine(lightupTorch());
+	}
+
+    IEnumerator lightupTorch()
+	{
         anim.SetTrigger("candle");
+        while(anim.GetCurrentAnimatorStateInfo(0).IsName("Default"))
+		{
+            yield return null;
+		}
+        while (anim.GetCurrentAnimatorStateInfo(0).IsName("candle") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1)
+		{
+            yield return null;
+		}
+        GameManager.foundTorch();
 	}
 }

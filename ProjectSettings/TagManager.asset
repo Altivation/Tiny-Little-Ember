@@ -43,7 +43,7 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Hearth
+  - name: Environment
     uniqueID: 2393194733
     locked: 0
   - name: Candles
