@@ -22,13 +22,18 @@ public class Jumping : MonoBehaviour
             musicManager.Instance.Jump();
         }
     }
-	private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "solid")
+		{
+            move.onground = true;
+		}
+	}
+	private void OnTriggerExit2D(Collider2D collision)
 	{
-        move.onground = true;
-    }
-    
-	private void OnCollisionExit2D(Collision2D collision)
-	{
-        move.onground = false;
+		if (collision.tag == "solid")
+		{
+            move.onground = false;
+		}
 	}
 }

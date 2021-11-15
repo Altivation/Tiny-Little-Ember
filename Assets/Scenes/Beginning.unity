@@ -554,7 +554,7 @@ GameObject:
   - component: {fileID: 581854870}
   m_Layer: 0
   m_Name: Snow
-  m_TagString: Untagged
+  m_TagString: solid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1134,7 +1134,7 @@ GameObject:
   - component: {fileID: 615251757}
   m_Layer: 0
   m_Name: Block
-  m_TagString: Untagged
+  m_TagString: solid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2364,7 +2364,7 @@ PrefabInstance:
     - target: {fileID: 8495103958098392026, guid: aea7cd1bf0929c24eb59a631b708bfe4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 26e51e1ec8cbd1840895dc7c377336c5, type: 3}
+      objectReference: {fileID: 21300000, guid: fad37b3ff5a94c6428705035837bc5d7, type: 3}
     - target: {fileID: 8495103958098392026, guid: aea7cd1bf0929c24eb59a631b708bfe4, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -2567,7 +2567,7 @@ GameObject:
   - component: {fileID: 1110088554}
   m_Layer: 0
   m_Name: platform
-  m_TagString: Untagged
+  m_TagString: solid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3208,8 +3208,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -750}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 25, y: -750}
+  m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1352072897
 MonoBehaviour:
@@ -3244,7 +3244,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 00/00
+  m_Text: 00
 --- !u!222 &1352072898
 CanvasRenderer:
   m_ObjectHideFlags: 0
