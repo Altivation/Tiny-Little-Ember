@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionAnim: {fileID: 404917850}
-  sceneName: SampleScene
+  sceneName: TestScene
 --- !u!4 &190356668
 Transform:
   m_ObjectHideFlags: 0
