@@ -4,10 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - player
-  - ice
-  - snow
-  - cracked
+  - fireball
+  - solid
   layers:
   - Default
   - TransparentFX
@@ -44,6 +42,18 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Hearth
+    uniqueID: 2393194733
+    locked: 0
+  - name: Candles
+    uniqueID: 2404349775
+    locked: 0
+  - name: Player
+    uniqueID: 1286453047
+    locked: 0
+  - name: Items
+    uniqueID: 1827357773
     locked: 0
   - name: UI
     uniqueID: 463813521
