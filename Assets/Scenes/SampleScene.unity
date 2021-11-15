@@ -336,7 +336,6 @@ GameObject:
   - component: {fileID: 280644787}
   - component: {fileID: 280644789}
   - component: {fileID: 280644788}
-  - component: {fileID: 280644790}
   - component: {fileID: 280644793}
   - component: {fileID: 280644792}
   - component: {fileID: 280644791}
@@ -615,19 +614,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &280644790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 280644786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62c8085c256a02e48bc32910f7ffe1d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lossPerSecond: 0
 --- !u!66 &280644791
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -2776,7 +2762,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3693465390443488701, guid: 5f07aa6ba7fe7ba4cb7206228f85e45f, type: 3}
       propertyPath: state
-      value: move
+      value: between
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693465390443488701, guid: 5f07aa6ba7fe7ba4cb7206228f85e45f, type: 3}
+      propertyPath: Positions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693465390443488701, guid: 5f07aa6ba7fe7ba4cb7206228f85e45f, type: 3}
+      propertyPath: Positions.Array.data[0].x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693465390443488701, guid: 5f07aa6ba7fe7ba4cb7206228f85e45f, type: 3}
+      propertyPath: Positions.Array.data[1].x
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 3693465390443488703, guid: 5f07aa6ba7fe7ba4cb7206228f85e45f, type: 3}
       propertyPath: m_RootOrder
