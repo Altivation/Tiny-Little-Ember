@@ -21,7 +21,7 @@ public class Thermometer : MonoBehaviour
 
     public void changeThermo()
 	{
-        thermoBar.fillAmount = heatManager.currHeat / heatManager.maxHeat;
-        txt.text = Mathf.Floor(heatManager.currHeat).ToString() + "/" + heatManager.maxHeat.ToString();
+        thermoBar.fillAmount = (float) fuelManager.fuel / fuelManager.Instance.maxfuel;
+        txt.text = fuelManager.fuel.ToString();
 	}
 }

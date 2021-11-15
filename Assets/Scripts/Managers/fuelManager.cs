@@ -5,15 +5,21 @@ using UnityEngine;
 public class fuelManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] public static int fuel;
+    [SerializeField] public int maxfuel;
+    public static int fuel;
     public static fuelManager Instance;
+
+    Thermometer thermo; //temp
 	public void Awake()
 	{
         Instance = this;
 	}
 	void Start()
     {
-        
+        Debug.Log(maxfuel);
+        fuel = maxfuel;
+        thermo = FindObjectOfType<Thermometer>(); //temp
+        thermo.changeThermo();
     }
 
     // Update is called once per frame
@@ -24,7 +30,7 @@ public class fuelManager : MonoBehaviour
 
     public bool hasEnough(int i)
 	{
-        if (fuel >= i)
+        if (fuel > i)
 		{
             return true;
 		} else
@@ -35,10 +41,17 @@ public class fuelManager : MonoBehaviour
     public void gain(int i)
 	{
         fuel += i;
+        thermo.changeThermo();//temp
 	}
 
     public void lose(int i)
 	{
         fuel -= i;
+        if (fuel <= 0)
+		{
+            fuel = 0;
+            sceneChanger.Instance.resetScene();
+        }
+        thermo.changeThermo();//temp
 	}
 }

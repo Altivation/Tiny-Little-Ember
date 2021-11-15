@@ -6,7 +6,6 @@ public class sceneChanger : MonoBehaviour
 {
     // Start is called before the first frame update
     [HideInInspector] public static sceneChanger Instance;
-    [SerializeField] public float duration = 0.5f;
     static Animator anim;
     static bool loading;
 
@@ -37,8 +36,8 @@ public class sceneChanger : MonoBehaviour
 	{
         if (!loading)
 		{
-            StartCoroutine(fadeOut(true));
             loading = true;
+            StartCoroutine(fadeOut(true));
         }
 
 	}
@@ -47,8 +46,8 @@ public class sceneChanger : MonoBehaviour
 	{
         if (!loading)
 		{
-            StartCoroutine(fadeOut(false));
             loading = true;
+            StartCoroutine(fadeOut(false));
         }
 
 	}
