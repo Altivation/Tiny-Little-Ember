@@ -190,10 +190,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ba7bc03fe504540ab45e9ce2b821f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  fastfall: -3
-  airspeed: 2
-  jumpforce: 5
+  speed: 3
+  fastfall: -7
+  airspeed: 3
+  jumpforce: 6
   onground: 0
   direction: 0
   rb: {fileID: 0}
@@ -213,8 +213,8 @@ MonoBehaviour:
   lobbedball: {fileID: 2575869898260128628, guid: 1ae48a8ec97a0cb4ab2c0c0b531788bb, type: 3}
   shotPerSecond: 0.3
   adjust: {x: 0, y: 0, z: 0}
-  linearLoss: 0
-  lobbedLoss: 0
+  linearCost: 3
+  lobbedCost: 2
 --- !u!50 &8495103958098392023
 Rigidbody2D:
   serializedVersion: 4

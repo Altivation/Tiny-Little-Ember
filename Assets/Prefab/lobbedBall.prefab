@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -1846198755386642082}
   m_Layer: 0
   m_Name: lobbedBall
-  m_TagString: Untagged
+  m_TagString: fireball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +100,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 5
   bounces: 3
-  survivalTime: 5
 --- !u!50 &2575869898260128627
 Rigidbody2D:
   serializedVersion: 4

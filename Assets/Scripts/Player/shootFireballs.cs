@@ -9,8 +9,8 @@ public class shootFireballs : MonoBehaviour
     [SerializeField] lobbedBall lobbedball;
     [SerializeField] float shotPerSecond;
     [SerializeField] Vector3 adjust;
-    [SerializeField] float linearLoss;
-    [SerializeField] float lobbedLoss;
+    [SerializeField] int linearCost;
+    [SerializeField] int lobbedCost;
 
     float currTime;
     void Start()
@@ -24,15 +24,15 @@ public class shootFireballs : MonoBehaviour
         currTime += Time.deltaTime;
         if (currTime >= shotPerSecond)
 		{
-            if (heatManager.hasEnough(linearLoss) && (Input.GetKey("z") || Input.GetKey("j")))
+            if (fuelManager.Instance.hasEnough(linearCost) && (Input.GetKey("z") || Input.GetKey("j") || Input.GetMouseButtonDown(0)))
 			{
                 Instantiate(linearball, transform.position + adjust, Quaternion.identity);
-                heatManager.loseHeat(linearLoss);
+                fuelManager.Instance.lose(linearCost);
                 currTime = 0;
-			} else if (heatManager.hasEnough(lobbedLoss) && (Input.GetKey("x") || Input.GetKey("k")))
+			} else if (fuelManager.Instance.hasEnough(lobbedCost) && (Input.GetKey("x") || Input.GetKey("k") || Input.GetMouseButtonDown(1)))
 			{
                 Instantiate(lobbedball, transform.position + adjust, Quaternion.identity);
-                heatManager.gainHeat(lobbedLoss);
+                fuelManager.Instance.lose(lobbedCost);
                 currTime = 0;
             }
 		}

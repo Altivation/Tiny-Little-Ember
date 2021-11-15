@@ -25,12 +25,11 @@ public class lobbedBall : MonoBehaviour
     {
         if (direction)
 		{
-            rb.AddForce(Vector2.left * force, ForceMode2D.Impulse);
-            sr.flipX = true;
+            rb.AddForce(Vector2.right * force, ForceMode2D.Impulse);
 		} else
 		{
-            rb.AddForce(Vector2.right * force, ForceMode2D.Impulse);
-            sr.flipX = false;
+            rb.AddForce(Vector2.left * force, ForceMode2D.Impulse);
+            transform.localScale = new Vector3(transform.localScale[0] * -1, transform.localScale[1], transform.localScale[2]);
         }
     }
 
@@ -43,11 +42,6 @@ public class lobbedBall : MonoBehaviour
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
         bounces--;
-        if (collision.gameObject.tag == "ice" || collision.gameObject.tag == "breaks")
-        {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-        }
         if (bounces <= 0)
 		{
             Destroy(gameObject);

@@ -18,29 +18,26 @@ public class linearBall : MonoBehaviour
 	}
 	void Start()
     {
-        
-    }
+		if (!direction) //if facing left
+		{
+			transform.localScale = new Vector3(transform.localScale[0] * -1, transform.localScale[1], transform.localScale[2]);
+		}
+	}
 
     // Update is called once per frame
     void Update()
     {
         if (direction)
 		{
-            transform.Translate(Vector3.left * speed * Time.deltaTime);
-			sr.flipX = true;
+            transform.Translate(Vector3.right * speed * Time.deltaTime);
 		} else
 		{
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
-			sr.flipX = true;
+            transform.Translate(Vector3.left * speed * Time.deltaTime);
 		}
     }
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.gameObject.tag == "ice" || collision.gameObject.tag == "breaks")
-		{
-            Destroy(collision.gameObject);
-		}
         Destroy(gameObject);
 	}
 
