@@ -8,7 +8,8 @@ public class iceBlock : MonoBehaviour
     [SerializeField] int cost = 2;
     [SerializeField] float delay;
     Animator anim;
-
+    Rigidbody2D rb;
+    Collider2D hitbox;
     bool inContact;
     float currTime;
     bool isCombusting;
@@ -18,6 +19,8 @@ public class iceBlock : MonoBehaviour
         inContact = false;
         isCombusting = false;
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+        hitbox = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -80,6 +83,8 @@ public class iceBlock : MonoBehaviour
             }
         } else if (cost == 1)
 		{
+            rb.isKinematic = true;
+            hitbox.enabled = false;
             while (anim.GetCurrentAnimatorStateInfo(0).IsName("iceBlock"))
             {
                 yield return null;

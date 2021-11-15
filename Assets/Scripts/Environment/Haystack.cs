@@ -8,7 +8,8 @@ public class Haystack : MonoBehaviour
     [SerializeField] int cost = 1;
     [SerializeField] float delay;
     Animator anim;
-
+    Rigidbody2D rb;
+    Collider2D hitbox;
     bool inContact;
     float currTime;
     bool isCombusting;
@@ -18,6 +19,8 @@ public class Haystack : MonoBehaviour
         inContact = false;
         isCombusting = false;
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+        hitbox = GetComponent<BoxCollider2D>(); 
         currTime = 0;
     }
 
@@ -67,6 +70,8 @@ public class Haystack : MonoBehaviour
 	{
         anim.SetTrigger("burn");
         isCombusting = true;
+        rb.isKinematic = true;
+        hitbox.enabled = false;
         while (anim.GetCurrentAnimatorStateInfo(0).IsName("Default"))
 		{
             yield return null;
