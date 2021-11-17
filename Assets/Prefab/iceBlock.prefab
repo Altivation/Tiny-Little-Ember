@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 2
-  delay: 0.15
+  delay: 0.1
 --- !u!95 &6861712718047211735
 Animator:
   serializedVersion: 3
@@ -165,4 +165,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4

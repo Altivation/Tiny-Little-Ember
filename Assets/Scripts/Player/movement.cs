@@ -29,6 +29,9 @@ public class movement : MonoBehaviour
         if (Input.GetKey("a") || Input.GetKey("left"))
 		{
             SwitchDirectionTo(false);
+
+            
+
             if (onground)
 			{
                 transform.Translate(Vector2.left * speed * Time.deltaTime);
@@ -37,10 +40,11 @@ public class movement : MonoBehaviour
                 transform.Translate(Vector2.left * airspeed * Time.deltaTime);
             }
             
-        } 
-        if (Input.GetKey("d") || Input.GetKey("right"))
+            
+        } else if (Input.GetKey("d") || Input.GetKey("right"))
 		{
             SwitchDirectionTo(true);
+
             if (onground)
             {
                 transform.Translate(Vector2.right * speed * Time.deltaTime);
@@ -49,8 +53,9 @@ public class movement : MonoBehaviour
             {
                 transform.Translate(Vector2.right * airspeed * Time.deltaTime);
             }
-            
+
         }
+
         if (Input.GetKey("s") || Input.GetKey("down") || rb.velocity.y <= fastfall)
 		{
             rb.velocity = Vector2.up * fastfall;

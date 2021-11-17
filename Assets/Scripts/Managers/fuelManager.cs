@@ -16,7 +16,6 @@ public class fuelManager : MonoBehaviour
 	}
 	void Start()
     {
-        Debug.Log(maxfuel);
         fuel = maxfuel;
         thermo = FindObjectOfType<Thermometer>(); //temp
         thermo.changeThermo();

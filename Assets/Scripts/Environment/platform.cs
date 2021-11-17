@@ -5,10 +5,10 @@ using UnityEngine;
 public class platform : MonoBehaviour
 {
     // Start is called before the first frame update
-        PlatformEffector2D plat;
+    movement player;
     void Start()
     {
-        plat = GetComponent<PlatformEffector2D>();
+        player = FindObjectOfType<movement>();
     }
 
     // Update is called once per frame
@@ -16,12 +16,12 @@ public class platform : MonoBehaviour
     {
         if (Input.GetKeyDown("down") || Input.GetKeyDown("s"))
 		{
-            plat.rotationalOffset = 180;
-		}
+            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
+        }
 
         if (Input.GetKeyUp("down") || Input.GetKeyUp("s"))
 		{
-            plat.rotationalOffset = 0;
-		}
+            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), false);
+        }
     }
 }

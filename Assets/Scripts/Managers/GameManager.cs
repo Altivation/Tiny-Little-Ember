@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     public static void foundTorch()
 	{
         numTorches--;
+        Debug.Log(numTorches);
         if (numTorches <= 0)
 		{
             sceneChanger.Instance.nextScene();

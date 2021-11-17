@@ -16,15 +16,18 @@ public class Jumping : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKey("up") || Input.GetKey("w")) && move.onground && move.rb.velocity.y <= 0) {
-            move.rb.velocity = new Vector2(move.rb.velocity.x, 0);
-            move.rb.AddForce(Vector3.up * jumpforce, ForceMode2D.Impulse);
-            musicManager.Instance.Jump();
+        if (Input.GetKey("up") || Input.GetKey("w")) {
+            
+            if (move.onground && move.rb.velocity.y <= 0)
+			{
+                move.rb.velocity = new Vector2(move.rb.velocity.x, 0);
+                move.rb.AddForce(Vector3.up * jumpforce, ForceMode2D.Impulse);
+            }
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "solid")
+        if (collision.gameObject.tag == "solid")
 		{
             move.onground = true;
 		}
@@ -32,14 +35,14 @@ public class Jumping : MonoBehaviour
 
 	private void OnTriggerStay2D(Collider2D collision)
 	{
-		if (collision.tag == "solid")
+		if (collision.gameObject.tag == "solid")
 		{
             move.onground = true;
 		}
 	}
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-		if (collision.tag == "solid")
+		if (collision.gameObject.tag == "solid")
 		{
             move.onground = false;
 		}

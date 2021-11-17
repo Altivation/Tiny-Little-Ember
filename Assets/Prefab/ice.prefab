@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 3693465390443488701}
   - component: {fileID: 7139273812872417818}
   - component: {fileID: 5469354781222489770}
+  - component: {fileID: 1589688785125756028}
   m_Layer: 0
   m_Name: ice
   m_TagString: solid
@@ -146,7 +147,7 @@ SpriteRenderer:
   m_SortingLayerID: 1286453047
   m_SortingLayer: 3
   m_SortingOrder: -5
-  m_Sprite: {fileID: 21300000, guid: 551384600c42a6c4aa5d3bd6f566f201, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7ddf9c775b6505d43971cc380bb859e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -231,7 +232,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.28}
+    oldSize: {x: 1.3653333, y: 1.3653333}
     newSize: {x: 20.48, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -240,3 +241,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.8}
   m_EdgeRadius: 0
+--- !u!114 &1589688785125756028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3693465390443488696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2133d10d86a604b92c450701f87825, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iceHP: 2
+  delay: 0.1

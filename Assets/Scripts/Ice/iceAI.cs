@@ -12,6 +12,7 @@ public class iceAI : MonoBehaviour
     [HideInInspector] public float alive; //checks if its alive
 
     int index;
+    public bool isAlive;
 
     Rigidbody2D rb;
     public bool direction = true; //true = right, false = left
@@ -20,6 +21,7 @@ public class iceAI : MonoBehaviour
 	private void Awake()
 	{
         rb = GetComponent<Rigidbody2D>();
+        isAlive = true;
         index = 0;
 	}
 	void Start()
@@ -33,10 +35,10 @@ public class iceAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (state == "move")
+        if (state == "move" && isAlive)
 		{
             Forward(direction);
-		} else if (state == "between")
+		} else if (state == "between" && isAlive)
 		{
             Vector2 destination = Positions[index];
             Forward(direction);

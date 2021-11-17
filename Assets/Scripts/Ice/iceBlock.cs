@@ -54,7 +54,7 @@ public class iceBlock : MonoBehaviour
             {
                 isCombusting = true;
                 StartCoroutine(Combust());
-                Destroy(collision.gameObject);
+                //Destroy(collision.gameObject);
             }
         }
     }
