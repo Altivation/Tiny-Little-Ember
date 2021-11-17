@@ -20,6 +20,7 @@ public class Jumping : MonoBehaviour
             
             if (move.onground && move.rb.velocity.y <= 0)
 			{
+                musicManager.Instance.playSource("Jump");
                 move.rb.velocity = new Vector2(move.rb.velocity.x, 0);
                 move.rb.AddForce(Vector3.up * jumpforce, ForceMode2D.Impulse);
             }

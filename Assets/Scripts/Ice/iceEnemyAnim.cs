@@ -79,6 +79,7 @@ public class iceEnemyAnim : MonoBehaviour
         anim.SetTrigger("damage");
         if (iceHP == 2)
         {
+            musicManager.Instance.playSource("IceCrack");
             while (anim.GetCurrentAnimatorStateInfo(0).IsName("idle") || anim.GetCurrentAnimatorStateInfo(0).IsName("run"))
             {
                 yield return null;
@@ -93,6 +94,7 @@ public class iceEnemyAnim : MonoBehaviour
             rb.isKinematic = true;
             hitbox.enabled = false;
             parent.isAlive = false;
+            musicManager.Instance.playSource("Splat");
             while (anim.GetCurrentAnimatorStateInfo(0).IsName("idleDamaged") || anim.GetCurrentAnimatorStateInfo(0).IsName("runDamaged"))
             {
                 yield return null;

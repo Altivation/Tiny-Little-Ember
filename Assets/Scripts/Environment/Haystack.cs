@@ -70,6 +70,7 @@ public class Haystack : MonoBehaviour
 	IEnumerator Combust()
 	{
         anim.SetTrigger("burn");
+        musicManager.Instance.playSource("Haystack");
         isCombusting = true;
         rb.isKinematic = true;
         hitbox.enabled = false;
