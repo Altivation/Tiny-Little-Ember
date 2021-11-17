@@ -28,7 +28,7 @@ public class candle : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.gameObject.tag == "Player" && !lit)
+		if ((collision.gameObject.tag == "Player" || collision.gameObject.tag == "fireball") && !lit)
 		{
             litTorch();
             lit = true;
