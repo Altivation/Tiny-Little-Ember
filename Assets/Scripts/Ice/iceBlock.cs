@@ -73,6 +73,7 @@ public class iceBlock : MonoBehaviour
         anim.SetTrigger("burn");
         if (cost == 2)
         {
+            musicManager.Instance.playSource("IceCrack");
             while (anim.GetCurrentAnimatorStateInfo(0).IsName("Default"))
             {
                 yield return null;
@@ -85,6 +86,7 @@ public class iceBlock : MonoBehaviour
 		{
             rb.isKinematic = true;
             hitbox.enabled = false;
+            musicManager.Instance.playSource("Splat");
             while (anim.GetCurrentAnimatorStateInfo(0).IsName("iceBlock"))
             {
                 yield return null;

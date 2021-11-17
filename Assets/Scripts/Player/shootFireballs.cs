@@ -26,6 +26,7 @@ public class shootFireballs : MonoBehaviour
 		{
             if (fuelManager.Instance.hasEnough(linearCost) && (Input.GetKey("z") || Input.GetKey("j") || Input.GetMouseButtonDown(0)))
 			{
+                musicManager.Instance.playSource("Shoot");
                 Instantiate(linearball, transform.position + adjust, Quaternion.identity);
                 fuelManager.Instance.lose(linearCost);
                 currTime = 0;

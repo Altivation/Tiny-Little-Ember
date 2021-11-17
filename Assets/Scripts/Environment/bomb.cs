@@ -69,7 +69,7 @@ public class bomb : MonoBehaviour
 	}
 	IEnumerator explode() {
         anim.SetTrigger("explode");
-        
+        musicManager.Instance.playSource("Bomb");
         hitbox.radius = explodeRadius;
         hasExploded = true;
 

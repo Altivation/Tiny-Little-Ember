@@ -43,6 +43,7 @@ public class candle : MonoBehaviour
     IEnumerator lightupTorch()
 	{
         anim.SetTrigger("candle");
+        musicManager.Instance.playSource("Light");
         while(anim.GetCurrentAnimatorStateInfo(0).IsName("Default"))
 		{
             yield return null;

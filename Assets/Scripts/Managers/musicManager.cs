@@ -1,19 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class musicManager : MonoBehaviour
 {
+    [Serializable] struct songpairs
+	{
+        public string name;
+        public AudioSource sound;
+	}
 
     [HideInInspector] public static musicManager Instance;
 
-    [SerializeField] AudioSource bg;
-    [SerializeField] AudioSource fire;
-    [SerializeField] AudioSource shoot;
-    [SerializeField] AudioSource cold;
-    [SerializeField] AudioSource splat;
-    [SerializeField] AudioSource ignite;
-    [SerializeField] AudioSource jump;
+    [SerializeField] List<songpairs> source;
     private void Awake()
     {
         if (!Instance)
@@ -27,53 +27,27 @@ public class musicManager : MonoBehaviour
         }
     }
 
-    public void playBG()
-    {
-        bg.Play();
-    }
-    public void playHearth()
-    {
-        fire.Play();
-    }
-
-    public void stopHearth()
-    {
-        fire.Pause();
-    }
-
-    public void playFrost()
+    public void playSource(string song)
 	{
-        cold.Play();
-	}
-    
-    public void pauseFrost()
-	{
-        cold.Pause();
+        for (int i = 0; i < source.Count; i++)
+		{
+            if (source[i].name == song)
+			{
+                source[i].sound.Play();
+                break;
+			}
+		}
 	}
 
-    public void Ignite()
-    {
-        ignite.Play();
-    }
-
-
-    public void Shoot()
-    {
-        shoot.Play();
-    }
-
-    public void setShoot(float val)
-    {
-        shoot.volume = val * 0.3f;
-    }
-
-    public void Splat()
-    {
-        splat.Play();
-    }
-
-    public void Jump()
-    {
-        jump.Play();
+    public void pauseSource(string song)
+	{
+        for (int i = 0; i < source.Count; i++)
+        {
+            if (source[i].name == song)
+            {
+                source[i].sound.Pause();
+                break;
+            }
+        }
     }
 }
