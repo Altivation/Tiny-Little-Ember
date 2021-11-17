@@ -4731,13 +4731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c154686f449aea047879f1de3106cd57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bg: {fileID: 1129324657}
-  fire: {fileID: 1008154733}
-  shoot: {fileID: 341017671}
-  cold: {fileID: 2050001300}
-  splat: {fileID: 1213153664}
-  ignite: {fileID: 2141459449}
-  jump: {fileID: 2070465970}
+  source: []
 --- !u!4 &966784636 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8263049660545100157, guid: 78e2bb4e60377a446a0555fca9a703b7, type: 3}
