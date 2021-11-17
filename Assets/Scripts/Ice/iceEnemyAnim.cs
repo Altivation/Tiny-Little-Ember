@@ -56,6 +56,7 @@ public class iceEnemyAnim : MonoBehaviour
         }
         if (collision.gameObject.tag == "fireball")
         {
+            
             if (!isCombusting)
             {
                 isCombusting = true;
