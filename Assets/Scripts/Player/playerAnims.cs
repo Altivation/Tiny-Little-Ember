@@ -38,6 +38,8 @@ public class playerAnims : MonoBehaviour
         if (fuelManager.fuel <= 0 && !anim.GetCurrentAnimatorStateInfo(0).IsName("fireDie"))
         {
             anim.SetTrigger("death");
+            GetComponent<move>().enabled = false;
+            GetComponent<jump>().enabled = false;
         } else if (movingLeft || movingRight)
 		{
             if (!anim.GetCurrentAnimatorStateInfo(0).IsName("fireRun"))

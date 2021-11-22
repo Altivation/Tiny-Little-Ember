@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class sceneChanger : MonoBehaviour
@@ -76,7 +75,8 @@ public class sceneChanger : MonoBehaviour
 		{
             yield return null;
 		}
-        while(anim.GetCurrentAnimatorStateInfo(0).IsName("fadeIn") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1)
+        GameManager.resetSpawn();
+        while (anim.GetCurrentAnimatorStateInfo(0).IsName("fadeIn") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1)
 		{
             yield return null;
 		}

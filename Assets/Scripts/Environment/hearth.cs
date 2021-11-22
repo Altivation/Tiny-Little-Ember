@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class hearth : MonoBehaviour
 {
-    // Start is called before the first frame update
-    [SerializeField] float ratePerSecond;
+	// Start is called before the first frame update
+	[SerializeField] float rps;
+	[SerializeField] float adjust;
     bool inContact;
+	float currTime;
+	float timeToRegenOne;
     void Start()
     {
         inContact = false;
+		currTime = 0f;
+		timeToRegenOne = 1.0f / rps;
     }
 
     // Update is called once per frame
@@ -17,7 +22,12 @@ public class hearth : MonoBehaviour
     {
         if (inContact)
 		{
-            heatManager.gainHeat(ratePerSecond * Time.deltaTime);
+			currTime += Time.deltaTime;
+			if (currTime > timeToRegenOne)
+			{
+				fuelManager.Instance.capGain(1);
+				currTime = 0f;
+			}
 		}
     }
 
@@ -26,6 +36,7 @@ public class hearth : MonoBehaviour
 		if (collision.gameObject.tag == "Player")
 		{
             inContact = true;
+			GameManager.setSpawn(transform.position);
 		}
 	}
 
@@ -34,6 +45,7 @@ public class hearth : MonoBehaviour
 		if (collision.gameObject.tag == "Player")
 		{
 			inContact = false;
+			currTime = 0f;
 		}
 	}
 }

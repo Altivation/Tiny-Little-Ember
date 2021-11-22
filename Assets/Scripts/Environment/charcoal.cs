@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class wood : MonoBehaviour
+public class charcoal : MonoBehaviour
 {
     // Start is called before the first frame update
-
     [SerializeField] int bonus;
     void Start()
     {
@@ -22,13 +21,7 @@ public class wood : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Player")
 		{
-            consumed();
+            fuelManager.Instance.maxfuel += bonus;
 		}
-	}
-
-    public void consumed()
-	{
-        fuelManager.Instance.gain(bonus);
-        Destroy(gameObject);
 	}
 }

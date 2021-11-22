@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public static GameManager Instance;
 
+    [HideInInspector] public static Vector3 respawnPos;
+
 
 	private void Awake()
 	{
@@ -32,6 +34,20 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public static void setSpawn(Vector3 pos)
+	{
+        respawnPos = pos;
+	}
+
+    public static void resetSpawn()
+	{
+        Debug.Log("called");
+        customPhysics player = FindObjectOfType<customPhysics>();
+        player.transform.position = respawnPos;
+        Camera cam = FindObjectOfType<Camera>();
+        cam.transform.position = respawnPos;
+        Debug.Log(player.transform.position);
+	}
     public static void resetTorches()
 	{
         numTorches = 0;

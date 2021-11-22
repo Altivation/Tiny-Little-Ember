@@ -43,6 +43,16 @@ public class fuelManager : MonoBehaviour
         thermo.changeThermo();//temp
 	}
 
+    public void capGain(int i)
+	{
+        fuel += i;
+        if (fuel > maxfuel)
+		{
+            fuel = maxfuel;
+		}
+        thermo.changeThermo();
+	}
+
     public void lose(int i)
 	{
         fuel -= i;
