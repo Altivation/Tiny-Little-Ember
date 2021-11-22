@@ -7,6 +7,7 @@ public class Haystack : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] int cost = 1;
     [SerializeField] float delay;
+    Respawn respawn;
     Animator anim;
     Rigidbody2D rb;
     Collider2D hitbox;
@@ -18,6 +19,7 @@ public class Haystack : MonoBehaviour
     {
         inContact = false;
         isCombusting = false;
+        respawn = GetComponent<Respawn>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         hitbox = GetComponent<Collider2D>(); 
@@ -82,7 +84,9 @@ public class Haystack : MonoBehaviour
 		{
             yield return null;
 		}
-        Destroy(gameObject);
+        respawn.Hide();
+        isCombusting = false;
+        rb.isKinematic = false;
 	}
     
 }

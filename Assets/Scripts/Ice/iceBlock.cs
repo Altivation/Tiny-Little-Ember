@@ -10,9 +10,11 @@ public class iceBlock : MonoBehaviour
     Animator anim;
     Rigidbody2D rb;
     Collider2D hitbox;
+    Respawn respawn;
     bool inContact;
     float currTime;
     bool isCombusting;
+    int HP;
     
     void Start()
     {
@@ -21,6 +23,8 @@ public class iceBlock : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         hitbox = GetComponent<Collider2D>();
+        respawn = GetComponent<Respawn>();
+        HP = 2;
     }
 
     // Update is called once per frame
@@ -71,7 +75,7 @@ public class iceBlock : MonoBehaviour
     IEnumerator Combust()
     {
         anim.SetTrigger("burn");
-        if (cost == 2)
+        if (HP == 2)
         {
             musicManager.Instance.playSource("IceCrack");
             while (anim.GetCurrentAnimatorStateInfo(0).IsName("Default"))
@@ -82,7 +86,7 @@ public class iceBlock : MonoBehaviour
             {
                 yield return null;
             }
-        } else if (cost == 1)
+        } else if (HP == 1)
 		{
             rb.isKinematic = true;
             hitbox.enabled = false;
@@ -97,12 +101,14 @@ public class iceBlock : MonoBehaviour
 			}
 		}
         isCombusting = false;
-        if (cost > 1)
+        if (HP > 1)
 		{
-            cost--;
+            HP--;
 		} else
 		{
-            Destroy(gameObject);
+            respawn.Hide();
+            rb.isKinematic = false;
+            HP = cost;
         }
     }
 }

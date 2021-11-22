@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6861712718047211733}
   - component: {fileID: 1681098827018804493}
   - component: {fileID: 8381973420031539169}
+  - component: {fileID: 598801799134108607}
   m_Layer: 0
   m_Name: iceBlock
   m_TagString: solid
@@ -191,3 +192,18 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!114 &598801799134108607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6861712718047211738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6503f3dcc7f4ef449bfbab46bd7a94fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  regen: 10
+  extraRegen: 5
+  hidden: 0
