@@ -2975,6 +2975,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7139273812872417818, guid: 5f07aa6ba7fe7ba4cb7206228f85e45f, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f07aa6ba7fe7ba4cb7206228f85e45f, type: 3}
 --- !u!1 &1833459973
@@ -3639,6 +3643,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3168924359689242101, guid: 78e2bb4e60377a446a0555fca9a703b7, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 4c2a806bd8a7a2242b72c1cb13d19586, type: 2}
     - target: {fileID: 8263049660545100151, guid: 78e2bb4e60377a446a0555fca9a703b7, type: 3}
       propertyPath: m_Name
       value: haystack
@@ -3646,6 +3654,10 @@ PrefabInstance:
     - target: {fileID: 8263049660545100151, guid: 78e2bb4e60377a446a0555fca9a703b7, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263049660545100152, guid: 78e2bb4e60377a446a0555fca9a703b7, type: 3}
+      propertyPath: m_Constraints
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8263049660545100157, guid: 78e2bb4e60377a446a0555fca9a703b7, type: 3}
       propertyPath: m_RootOrder
