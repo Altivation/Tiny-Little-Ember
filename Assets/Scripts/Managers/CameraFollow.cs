@@ -17,7 +17,7 @@ public class CameraFollow : MonoBehaviour
     void LateUpdate()
     {
         Vector3 destination = target.position + offset;
-        Vector3 transition = Vector3.Lerp(transform.position, destination, SmoothSpeed);
+        Vector3 transition = Vector3.Lerp(transform.position, destination / 1.5f, SmoothSpeed);
         transform.position = transition;
     }
 }

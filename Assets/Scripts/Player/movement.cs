@@ -5,8 +5,8 @@ using UnityEngine;
 public class movement : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] float speed;
-    [SerializeField] float fastfall;
+    public float speed;
+    public float fastfall;
     public float airspeed;
     public float jumpforce;
     [HideInInspector] public bool onground;
@@ -21,6 +21,7 @@ public class movement : MonoBehaviour
 	void Start()
     {
         direction = true;
+        
     }
 
     // Update is called once per frame
@@ -29,8 +30,6 @@ public class movement : MonoBehaviour
         if (Input.GetKey("a") || Input.GetKey("left"))
 		{
             SwitchDirectionTo(false);
-
-            
 
             if (onground)
 			{

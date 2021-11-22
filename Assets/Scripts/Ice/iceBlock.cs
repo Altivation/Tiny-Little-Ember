@@ -20,7 +20,7 @@ public class iceBlock : MonoBehaviour
         isCombusting = false;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        hitbox = GetComponent<BoxCollider2D>();
+        hitbox = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
