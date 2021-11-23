@@ -41,12 +41,12 @@ public class GameManager : MonoBehaviour
 
     public static void resetSpawn()
 	{
-        Debug.Log("called");
         customPhysics player = FindObjectOfType<customPhysics>();
         player.transform.position = respawnPos;
         Camera cam = FindObjectOfType<Camera>();
         cam.transform.position = respawnPos;
-        Debug.Log(player.transform.position);
+        
+        fuelManager.Instance.findThermo();
 	}
     public static void resetTorches()
 	{

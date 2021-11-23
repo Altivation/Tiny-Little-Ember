@@ -5,7 +5,7 @@ using UnityEngine;
 public class customPhysics : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] BoxCollider2D box;
+    [SerializeField] CircleCollider2D hitbox;
     public bool onGround;
     public float gravity;
     [SerializeField] float airResistance;
@@ -15,7 +15,7 @@ public class customPhysics : MonoBehaviour
     move MOVE;
     void Start()
     {
-        box = GetComponent<BoxCollider2D>();
+        hitbox = GetComponent<CircleCollider2D>();
         MOVE = GetComponent<move>();
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = gravity;
@@ -82,13 +82,26 @@ public class customPhysics : MonoBehaviour
 
     public bool IsGrounded()
     {
-        RaycastHit2D ray = Physics2D.Raycast(transform.position + new Vector3(box.offset.x, box.offset.y), Vector2.down, box.size.y / 2 + 0.02f, solid); 
+        RaycastHit2D ray = Physics2D.Raycast(transform.position + new Vector3(hitbox.offset.x, hitbox.offset.y), Vector2.down, hitbox.radius + 0.02f, solid); 
         return ray.collider != null;
+    }
+
+    public GameObject OnTopOf()
+	{
+        RaycastHit2D ray = Physics2D.Raycast(transform.position + new Vector3(hitbox.offset.x, hitbox.offset.y), Vector2.down, hitbox.radius + 0.02f, solid);
+        if (ray.collider != null)
+		{
+            return ray.collider.gameObject;
+        } else
+		{
+            return null;
+		}
+        
     }
 
 	private void OnDrawGizmos()
 	{
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position + new Vector3(box.offset.x, box.offset.y), transform.position + new Vector3(box.offset.x, box.offset.y) + (Vector3.down * (0.02f + box.size.y / 2)));
+        Gizmos.DrawLine(transform.position + new Vector3(hitbox.offset.x, hitbox.offset.y), transform.position + new Vector3(hitbox.offset.x, hitbox.offset.y) + (Vector3.down * (0.02f + hitbox.radius / 2)));
 	}
 }

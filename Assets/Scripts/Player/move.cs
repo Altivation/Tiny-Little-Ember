@@ -8,7 +8,6 @@ public class move : MonoBehaviour
     public float speed;
     public float airSpeed;
     
-    
     [HideInInspector] public bool direction; //facing right is true
 
     customPhysics player;
@@ -29,11 +28,10 @@ public class move : MonoBehaviour
         {
             SwitchDirectionTo(true);
             MoveTo();
-		} else if (player.onGround)
-		{
+        } else if (player.onGround)
+        {
             player.SetX(0);
-		}
-
+        }
         
     }
 

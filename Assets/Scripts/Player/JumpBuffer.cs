@@ -50,7 +50,7 @@ public class JumpBuffer : MonoBehaviour
                 if (preHop)
 				{
                     preHop = false;
-                    JUMP.Jump(JUMP.hopSpeed);
+                    JUMP.Hop();
 				}
                 if (preJump)
 				{

@@ -11,45 +11,54 @@ public class jump : MonoBehaviour
     [SerializeField] float fallBonus;
     [SerializeField] float returnSpeed;
     [SerializeField] float jumpSnap;
+    [SerializeField] float hopSnap;
     public float maxFall;
-    public bool hasJumped;
-    public bool weirdJump;
-    
+    public float fastFall;
+    float capFall;
+    [HideInInspector] public bool hasJumped;
+    [HideInInspector] public bool weirdJump;
+    [HideInInspector] public bool wasGrounded;
     customPhysics player;
     void Start()
     {
         player = GetComponent<customPhysics>();
         hasJumped = false;
         weirdJump = false;
+        wasGrounded = false;
+        capFall = maxFall;
     }
 
     // Update is called once per frame
     void Update()
     {
         //controls jump motion
-        if (!player.onGround && hasJumped)
+        if (!player.onGround)
 		{
-            if (!(Input.GetKey("up") || Input.GetKey("w") || Input.GetKey("space") || Input.GetKey(KeyCode.RightShift)))
-            {
-                player.rb.gravityScale = player.gravity + calculateFallModifier() * fallBonus;
-            } else if (player.rb.velocity.y < 0 && player.rb.gravityScale == player.gravity + jumpSnap)
+            if (hasJumped)
 			{
-                player.rb.gravityScale = player.gravity;
-			}
+                if (!(Input.GetKey("up") || Input.GetKey("w") || Input.GetKey("space") || Input.GetKey(KeyCode.RightShift)))
+                {
+                    player.rb.gravityScale = player.gravity + calculateFallModifier() * fallBonus;
+                } else if (player.rb.velocity.y < 0 && (player.rb.gravityScale == player.gravity + jumpSnap || player.rb.gravityScale == player.gravity + hopSnap))
+			    {   
+                    player.rb.gravityScale = player.gravity;
+			    }
+            }
         } else
 		{
             if (Mathf.Abs(player.rb.velocity.y) < 0.01f)
 			{
                 hasJumped = false;
-                player.rb.gravityScale = 0; //slows down if on Ground, enables coyote time
+                player.rb.gravityScale = player.gravity;
+                wasGrounded = true;
             }
 		}
 
 
         //resets Gravity
-        if (player.rb.velocity.y < maxFall) //caps out max FallSpeed
+        if (player.rb.velocity.y < capFall) //caps out max FallSpeed
         {
-            player.SetY(maxFall);
+            player.SetY(capFall);
             player.rb.gravityScale = 0f;
             hasJumped = false;
         } else if (player.rb.velocity.y < returnSpeed) //slows down from snapping
@@ -61,7 +70,7 @@ public class jump : MonoBehaviour
         if ((Input.GetKeyDown("up") || Input.GetKeyDown("w")) && (player.onGround || weirdJump))
 		{
             //small jump
-            Jump(hopSpeed);
+            Hop();
 		}  
 
         if ((Input.GetKeyDown("space") || Input.GetKeyDown(KeyCode.RightShift)) && (player.onGround || weirdJump))
@@ -71,7 +80,17 @@ public class jump : MonoBehaviour
             SuperJump();
 		}
 
-        
+        if (Input.GetKey("s") || Input.GetKey("down"))
+        {
+            //fastFall
+            capFall = fastFall;
+            player.SetY(fastFall);
+       
+        } else if (Input.GetKeyUp("s") || Input.GetKeyUp("down"))
+		{
+            capFall = maxFall;
+            player.SetY(capFall);
+		}
     }
 
     public void SuperJump()
@@ -80,13 +99,18 @@ public class jump : MonoBehaviour
 		{
             fuelManager.Instance.lose(jumpCost);
             Jump(jumpSpeed);
-            player.rb.gravityScale += jumpSnap;
+            player.rb.gravityScale = player.gravity + jumpSnap;
         }
+	}
+    public void Hop()
+	{
+        Jump(hopSpeed);
+        player.rb.gravityScale = player.gravity + hopSnap;
 	}
     public void Jump(float speed)
 	{
-        player.rb.gravityScale = player.gravity;
         weirdJump = false;
+        wasGrounded = false;
         hasJumped = true;
         player.SetY(speed);
 	}
@@ -94,13 +118,7 @@ public class jump : MonoBehaviour
     float calculateFallModifier()
 	{
         float val;
-        if (player.rb.velocity.y > 0f)
-        {
-            val = (jumpSpeed + player.rb.velocity.y) / jumpSpeed;
-        } else
-		{
-            val = (jumpSpeed + player.rb.velocity.y) / jumpSpeed;
-		}
+        val = (jumpSpeed + Mathf.Abs(player.rb.velocity.y)) / jumpSpeed;
         return Mathf.Abs(val);
 	}
 }

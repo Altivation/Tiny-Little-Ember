@@ -62,7 +62,7 @@ public class sceneChanger : MonoBehaviour
 		{
             yield return null;
 		}
-       
+        fuelManager.Instance.Reset();
         if (different)
 		{
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

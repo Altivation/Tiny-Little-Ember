@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8263049660545100155}
   - component: {fileID: 8263049660545100154}
   - component: {fileID: 8263049660545100152}
-  - component: {fileID: 3168924359689242101}
   - component: {fileID: 8149999704219763907}
-  m_Layer: 0
+  - component: {fileID: 1505050027929668681}
+  m_Layer: 6
   m_Name: haystack
   m_TagString: solid
   m_Icon: {fileID: 0}
@@ -141,8 +141,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
---- !u!60 &3168924359689242101
-PolygonCollider2D:
+--- !u!114 &8149999704219763907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8263049660545100151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6503f3dcc7f4ef449bfbab46bd7a94fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  regen: 15
+  extraRegen: 2
+  hidden: 0
+--- !u!61 &1505050027929668681
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -164,24 +179,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.5, y: 0.35}
-      - {x: -0.5, y: -0.5}
-      - {x: 0.5, y: -0.5}
-      - {x: 0.5, y: 0.35}
-      - {x: 0.35, y: 0.5}
-      - {x: -0.35, y: 0.5}
---- !u!114 &8149999704219763907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8263049660545100151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6503f3dcc7f4ef449bfbab46bd7a94fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hidden: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

@@ -15,25 +15,28 @@ public class CoyoteTime : MonoBehaviour
         currTime = 0;
         player = GetComponent<customPhysics>();
         JUMP = GetComponent<jump>();
+        coyoteReady = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!player.onGround && Mathf.Abs(player.rb.velocity.y) < 0.01f && player.rb.gravityScale == 0f && !JUMP.hasJumped)
+        if (!player.onGround && Mathf.Abs(player.rb.velocity.y) < 0.01f && !JUMP.hasJumped && !coyoteReady && JUMP.wasGrounded)
 		{
-            currTime += Time.deltaTime;
-            if (currTime < coyoteTime)
-			{
-                JUMP.weirdJump = true;
-			} else
-			{
-                player.rb.gravityScale = player.gravity;
-                JUMP.weirdJump = false;
-			}
-		} else
-		{
+            coyoteReady = true;
             currTime = 0;
-		}
+            JUMP.weirdJump = true;
+        }
+
+        if (coyoteReady)
+        {
+            currTime += Time.deltaTime;
+            if (currTime > coyoteTime)
+            {
+                JUMP.weirdJump = false;
+                coyoteReady = false;
+                currTime = 0;
+            }
+        }
     }
 }

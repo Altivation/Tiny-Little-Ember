@@ -8,7 +8,6 @@ public class fuelManager : MonoBehaviour
     [SerializeField] public int maxfuel;
     public static int fuel;
     public static fuelManager Instance;
-
     Thermometer thermo; //temp
 	public void Awake()
 	{
@@ -24,10 +23,18 @@ public class fuelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public bool hasEnough(int i)
+    public void findThermo()
+	{
+        thermo = FindObjectOfType<Thermometer>();
+	}
+	public void Reset()
+	{
+        fuel = maxfuel;
+	}
+	public bool hasEnough(int i)
 	{
         if (fuel > i)
 		{

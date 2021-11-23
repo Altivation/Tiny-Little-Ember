@@ -53,6 +53,7 @@ public class Respawn : MonoBehaviour
 
 	public void Hide()
 	{
+        Debug.Log("hitbox");
         hitbox.enabled = false;
         sr.enabled = false;
         hidden = true;

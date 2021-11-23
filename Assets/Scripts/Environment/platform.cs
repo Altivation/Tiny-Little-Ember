@@ -5,10 +5,10 @@ using UnityEngine;
 public class platform : MonoBehaviour
 {
     // Start is called before the first frame update
-    movement player;
+    customPhysics player;
     void Start()
     {
-        player = FindObjectOfType<movement>();
+        player = FindObjectOfType<customPhysics>();
     }
 
     // Update is called once per frame
@@ -16,12 +16,14 @@ public class platform : MonoBehaviour
     {
         if (Input.GetKeyDown("down") || Input.GetKeyDown("s"))
 		{
-            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
+            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<CompositeCollider2D>());
+            Debug.Log(player.GetComponent<Collider2D>());
+            Debug.Log(GetComponent<Collider2D>());
         }
 
         if (Input.GetKeyUp("down") || Input.GetKeyUp("s"))
 		{
-            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), false);
+            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<CompositeCollider2D>(), false);
         }
     }
 }
