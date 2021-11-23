@@ -138,4 +138,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   regen: 10
   extraRegen: 5
+  neverRespawn: 1
   hidden: 0

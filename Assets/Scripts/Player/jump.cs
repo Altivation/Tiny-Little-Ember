@@ -83,13 +83,18 @@ public class jump : MonoBehaviour
         if (Input.GetKey("s") || Input.GetKey("down"))
         {
             //fastFall
-            capFall = fastFall;
-            player.SetY(fastFall);
-       
+            if (!player.onGround || player.OnTopOf().GetComponent<platform>() != null)
+			{
+                capFall = fastFall;
+                player.SetY(fastFall);
+            }
         } else if (Input.GetKeyUp("s") || Input.GetKeyUp("down"))
 		{
             capFall = maxFall;
-            player.SetY(capFall);
+            if (!player.onGround)
+			{
+                player.SetY(capFall);
+            }
 		}
     }
 

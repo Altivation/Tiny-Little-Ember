@@ -11,6 +11,7 @@ public class Respawn : MonoBehaviour
     Camera cam;
     [SerializeField] float regen = 10f;
     [SerializeField] float extraRegen = 5f;
+    [SerializeField] bool neverRespawn;
     [HideInInspector] public bool hidden;
     float currTime = 0f;
     float bonTime = 0f;
@@ -32,7 +33,7 @@ public class Respawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hidden)
+        if (hidden && !neverRespawn)
 		{
             if (currTime < regen)
 			{

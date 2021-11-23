@@ -17,8 +17,6 @@ public class platform : MonoBehaviour
         if (Input.GetKeyDown("down") || Input.GetKeyDown("s"))
 		{
             Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<CompositeCollider2D>());
-            Debug.Log(player.GetComponent<Collider2D>());
-            Debug.Log(GetComponent<Collider2D>());
         }
 
         if (Input.GetKeyUp("down") || Input.GetKeyUp("s"))

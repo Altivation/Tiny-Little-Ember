@@ -54,8 +54,6 @@ public class Haystack : MonoBehaviour
             if (!isCombusting)
 			{
                 StartCoroutine(Combust());
-                Debug.Log(collision.gameObject.tag);
-                //Destroy(collision.gameObject);
             }
 		}
 	}

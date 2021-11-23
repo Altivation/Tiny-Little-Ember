@@ -29,10 +29,15 @@ public class fuelManager : MonoBehaviour
     public void findThermo()
 	{
         thermo = FindObjectOfType<Thermometer>();
+        Reset();
 	}
 	public void Reset()
 	{
         fuel = maxfuel;
+        if (thermo != null)
+		{
+            thermo.changeThermo();
+        }
 	}
 	public bool hasEnough(int i)
 	{
@@ -52,10 +57,15 @@ public class fuelManager : MonoBehaviour
 
     public void capGain(int i)
 	{
-        fuel += i;
-        if (fuel > maxfuel)
+        for (int j = 0; j < i; i++)
 		{
-            fuel = maxfuel;
+            if (fuel < maxfuel)
+			{
+                fuel++;
+			} else
+			{
+                break;
+			}
 		}
         thermo.changeThermo();
 	}
