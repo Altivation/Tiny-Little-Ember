@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2742723387350977819}
   - component: {fileID: 2742723387350977816}
   - component: {fileID: 2742723387350977817}
+  - component: {fileID: -8016027094482879934}
+  - component: {fileID: 3002522743132243592}
   m_Layer: 0
   m_Name: bomb
   m_TagString: Untagged
@@ -73,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 690d6db22f848074ca290e04428d695c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5eb5c8977a40cfd40a047ad013de071a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,13 +98,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80b84e1550c31c84a8f0835fa5987ceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explodeForce: 2
-  explodeRadius: 1
-  playerUp: 9
-  playerDirection: 6
-  lastingTime: 0.1
-  doesRegen: 0
-  regenTime: 5
+  cost: 1
+  burstDrag: 14
+  basePower: 0
+  upPower: 18
+  sidePower: 12
+  downPower: 5
+  weakUpPower: 16.5
+  veryWeakUpPower: 3.5
+  weakSidePower: 10.5
+  upGravity: 5
+  xGravity: 1.25
+  keepsGoing: 0
 --- !u!95 &2742723387350977817
 Animator:
   serializedVersion: 3
@@ -122,3 +129,36 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!58 &-8016027094482879934
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2742723387350977822}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.2}
+  serializedVersion: 2
+  m_Radius: 0.6
+--- !u!114 &3002522743132243592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2742723387350977822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6503f3dcc7f4ef449bfbab46bd7a94fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  regen: 3
+  extraRegen: 0
+  neverRespawn: 0
+  revealed: 1
+  hidden: 0

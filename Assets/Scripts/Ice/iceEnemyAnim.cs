@@ -9,11 +9,12 @@ public class iceEnemyAnim : MonoBehaviour
     iceAI parent;
     [SerializeField] int iceHP = 2;
     [SerializeField] float delay;
+    [SerializeField] float timetoTakeDamage;
     Rigidbody2D rb;
     Collider2D hitbox;
     bool inContact;
     float currTime;
-    bool isCombusting;
+    [HideInInspector] public bool isCombusting;
     bool isAlive;
     void Start()
     {
@@ -23,10 +24,7 @@ public class iceEnemyAnim : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         hitbox = GetComponent<BoxCollider2D>();
         parent = GetComponent<iceAI>();
-        if (parent.state == "move" || parent.state == "motion")
-		{
-            anim.SetTrigger("run");
-		}
+
     }
 
     // Update is called once per frame
@@ -39,8 +37,7 @@ public class iceEnemyAnim : MonoBehaviour
             {
                 if (!isCombusting)
                 {
-                    isCombusting = true;
-                    fuelManager.Instance.lose(1);
+                    
                     StartCoroutine(Combust());
                     currTime = 0;
                 }
@@ -54,16 +51,6 @@ public class iceEnemyAnim : MonoBehaviour
         {
             inContact = true;
         }
-        if (collision.gameObject.tag == "fireball")
-        {
-            
-            if (!isCombusting)
-            {
-                isCombusting = true;
-                StartCoroutine(Combust());
-                //Destroy(collision.gameObject);
-            }
-        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -75,28 +62,30 @@ public class iceEnemyAnim : MonoBehaviour
         }
     }
 
-    IEnumerator Combust()
+    public IEnumerator Combust()
     {
-        anim.SetTrigger("damage");
+        isCombusting = true;
+        fuelManager.Instance.lose(1);
+        
         if (iceHP == 2)
         {
             musicManager.Instance.playSource("IceCrack");
-            while (anim.GetCurrentAnimatorStateInfo(0).IsName("idle") || anim.GetCurrentAnimatorStateInfo(0).IsName("run"))
-            {
+            float elapsed = 0f;
+            while (elapsed <= timetoTakeDamage)
+			{
+                elapsed += timetoTakeDamage;
                 yield return null;
-            }
-            while ((anim.GetCurrentAnimatorStateInfo(0).IsName("idleDamaged") || anim.GetCurrentAnimatorStateInfo(0).IsName("runDamaged")) && anim.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1)
-            {
-                yield return null;
-            }
+			}
         }
         else if (iceHP == 1)
         {
+            anim.SetTrigger("damage");
+            rb.velocity = Vector2.zero;
             rb.isKinematic = true;
+            parent.enabled = false;
             hitbox.enabled = false;
-            parent.isAlive = false;
             musicManager.Instance.playSource("Splat");
-            while (anim.GetCurrentAnimatorStateInfo(0).IsName("idleDamaged") || anim.GetCurrentAnimatorStateInfo(0).IsName("runDamaged"))
+            while (anim.GetCurrentAnimatorStateInfo(0).IsName("idle"))
             {
                 yield return null;
             }
@@ -108,6 +97,7 @@ public class iceEnemyAnim : MonoBehaviour
         isCombusting = false;
         if (iceHP > 1)
         {
+            Debug.Log("ever called?");
             iceHP--;
         }
         else

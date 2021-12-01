@@ -9,8 +9,6 @@ public class Haystack : MonoBehaviour
     [SerializeField] float delay;
     Respawn respawn;
     Animator anim;
-    Rigidbody2D rb;
-    Collider2D hitbox;
     bool inContact;
     float currTime;
     bool isCombusting;
@@ -21,8 +19,6 @@ public class Haystack : MonoBehaviour
         isCombusting = false;
         respawn = GetComponent<Respawn>();
         anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
-        hitbox = GetComponent<Collider2D>(); 
         currTime = 0;
     }
 
@@ -36,7 +32,6 @@ public class Haystack : MonoBehaviour
 			{
                 if (!isCombusting)
 				{
-                    fuelManager.Instance.lose(cost);
                     StartCoroutine(Combust());
                 }
 			}
@@ -67,24 +62,26 @@ public class Haystack : MonoBehaviour
 		}
 	}
 
-	IEnumerator Combust()
+	public IEnumerator Combust()
 	{
-        anim.SetTrigger("burn");
-        musicManager.Instance.playSource("Haystack");
-        isCombusting = true;
-        rb.isKinematic = true;
-        hitbox.enabled = false;
-        while (anim.GetCurrentAnimatorStateInfo(0).IsName("Default"))
+        if (!isCombusting)
 		{
-            yield return null;
-		}
-        while (anim.GetCurrentAnimatorStateInfo(0).IsName("haystack") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1)
-		{
-            yield return null;
-		}
-        respawn.Hide();
-        isCombusting = false;
-        rb.isKinematic = false;
+            anim.SetTrigger("burn");
+            fuelManager.Instance.lose(cost);
+            musicManager.Instance.playSource("Haystack");
+            isCombusting = true;
+            while (anim.GetCurrentAnimatorStateInfo(0).IsName("Default"))
+            {
+                yield return null;
+            }
+            while (anim.GetCurrentAnimatorStateInfo(0).IsName("haystack") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1)
+            {
+                yield return null;
+            }
+            respawn.Hide();
+            isCombusting = false;
+        }
+        
 	}
     
 }

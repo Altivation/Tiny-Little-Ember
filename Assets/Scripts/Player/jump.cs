@@ -8,10 +8,12 @@ public class jump : MonoBehaviour
     public int jumpCost;
     public float hopSpeed;
     public float jumpSpeed;
+    public float badJumpSpeed;
     [SerializeField] float fallBonus;
     [SerializeField] float returnSpeed;
     [SerializeField] float jumpSnap;
     [SerializeField] float hopSnap;
+    [SerializeField] float fastfallGravity;
     public float maxFall;
     public float fastFall;
     float capFall;
@@ -46,7 +48,7 @@ public class jump : MonoBehaviour
             }
         } else
 		{
-            if (Mathf.Abs(player.rb.velocity.y) < 0.01f)
+            if (Mathf.Abs(player.rb.velocity.y) < 0.01f && !player.GetComponent<move>().weird)
 			{
                 hasJumped = false;
                 player.rb.gravityScale = player.gravity;
@@ -83,33 +85,35 @@ public class jump : MonoBehaviour
         if (Input.GetKey("s") || Input.GetKey("down"))
         {
             //fastFall
-            if (!player.onGround || player.OnTopOf().GetComponent<platform>() != null)
+            if (!player.onGround)
 			{
                 capFall = fastFall;
-                player.SetY(fastFall);
+                player.rb.gravityScale = fastfallGravity;
             }
         } else if (Input.GetKeyUp("s") || Input.GetKeyUp("down"))
 		{
             capFall = maxFall;
-            if (!player.onGround)
-			{
-                player.SetY(capFall);
-            }
 		}
     }
 
     public void SuperJump()
 	{
+        musicManager.Instance.playSource("Jump");
         if (fuelManager.Instance.hasEnough(jumpCost))
 		{
             fuelManager.Instance.lose(jumpCost);
             Jump(jumpSpeed);
             player.rb.gravityScale = player.gravity + jumpSnap;
-        }
+        } else
+		{
+            Jump(badJumpSpeed);
+            player.rb.gravityScale = player.gravity;
+		}
 	}
     public void Hop()
 	{
         Jump(hopSpeed);
+        
         player.rb.gravityScale = player.gravity + hopSnap;
 	}
     public void Jump(float speed)
@@ -117,6 +121,7 @@ public class jump : MonoBehaviour
         weirdJump = false;
         wasGrounded = false;
         hasJumped = true;
+        
         player.SetY(speed);
 	}
 

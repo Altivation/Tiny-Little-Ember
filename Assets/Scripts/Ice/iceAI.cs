@@ -8,13 +8,15 @@ public class iceAI : MonoBehaviour
     public string state; //null, move, between
     [SerializeField] float speed;
     [SerializeField] List<Vector2> Positions;
+    [SerializeField] float switchDelay;
+    float currTime;
 
     [HideInInspector] public float alive; //checks if its alive
 
     int index;
     public bool isAlive;
 
-    Rigidbody2D rb;
+    [HideInInspector] public Rigidbody2D rb;
     public bool direction = true; //true = right, false = left
 
 
@@ -30,6 +32,8 @@ public class iceAI : MonoBehaviour
 		{
             transform.localScale = new Vector3(transform.localScale[0] * -1, transform.localScale[1], transform.localScale[2]);
 		}
+
+        currTime = 0;
     }
 
     // Update is called once per frame
@@ -57,25 +61,35 @@ public class iceAI : MonoBehaviour
 			}
 
 		}
+
+        if (currTime <= switchDelay)
+        {
+            currTime += Time.deltaTime;
+        }
     }
 
     public void Forward(bool direction)
 	{
+        rb.velocity = new Vector2(0, rb.velocity.y);
         if (direction)
         {
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
+            transform.Translate(Vector2.right * Time.deltaTime * speed);
+            
         }
         else
         {
-            transform.Translate(Vector3.left * speed * Time.deltaTime);
+            transform.Translate(Vector2.left * Time.deltaTime * speed);
         }
     }
 
     public void SwitchDirections()
 	{
-        direction = !direction;
-        transform.localScale = new Vector3(transform.localScale[0] * -1, transform.localScale[1], transform.localScale[2]);
+        if (currTime > switchDelay)
+		{
+            direction = !direction;
+            transform.localScale = new Vector3(transform.localScale[0] * -1, transform.localScale[1], transform.localScale[2]);
+            currTime = 0;
+        }
+        
     }
-
-	
 }

@@ -37,12 +37,21 @@ public class IcicleFall : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            Debug.Log("HIT");
+            fuelManager.Instance.lose(1);
+            musicManager.Instance.playSource("Splat");
             Destroy(gameObject);
         }
         else
         {
             rb.gravityScale = 0;
-            box.enabled = false;
+            //box.enabled = false;
         }
+
+        if (isFalling && (collision.gameObject.tag == "solid" || collision.gameObject.tag == "Untagged")) {
+            musicManager.Instance.playSource("Splat");
+            Destroy(gameObject);
+        }
+
     }
 }

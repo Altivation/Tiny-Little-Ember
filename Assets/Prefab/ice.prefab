@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3577802504611861406}
   - component: {fileID: 866972516335095868}
   - component: {fileID: 6690321532578139007}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: walkbox
-  m_TagString: Untagged
+  m_TagString: IceCube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,7 +45,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.25, y: -0.125}
+  m_Offset: {x: 0.25, y: -0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -85,9 +85,9 @@ GameObject:
   - component: {fileID: 7139273812872417818}
   - component: {fileID: 5469354781222489770}
   - component: {fileID: 1589688785125756028}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ice
-  m_TagString: solid
+  m_TagString: IceCube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,7 +147,7 @@ SpriteRenderer:
   m_SortingLayerID: 1286453047
   m_SortingLayer: 3
   m_SortingOrder: -5
-  m_Sprite: {fileID: 21300000, guid: 7ddf9c775b6505d43971cc380bb859e2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f8851687113453d4d983ed93a7173e71, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -189,11 +189,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 125b764c6b725d848bf1fa59851a0ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 
-  speed: 0
+  state: move
+  speed: 3
   Positions: []
+  switchDelay: 0.2
   alive: 0
   isAlive: 0
+  rb: {fileID: 0}
   direction: 1
 --- !u!50 &7139273812872417818
 Rigidbody2D:
@@ -211,7 +213,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 4c2a806bd8a7a2242b72c1cb13d19586, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -229,18 +231,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.125}
+  m_Offset: {x: 0, y: -0.225}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.44, y: 1.44}
     newSize: {x: 20.48, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 0.8}
+  m_Size: {x: 0.7, y: 0.7}
   m_EdgeRadius: 0
 --- !u!114 &1589688785125756028
 MonoBehaviour:
@@ -256,3 +258,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iceHP: 2
   delay: 0.1
+  timetoTakeDamage: 0.5
+  isCombusting: 0

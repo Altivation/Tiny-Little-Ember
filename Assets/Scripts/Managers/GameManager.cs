@@ -5,12 +5,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    [HideInInspector] public static int numTorches;
-
     [HideInInspector] public static GameManager Instance;
 
     [HideInInspector] public static Vector3 respawnPos;
 
+    [HideInInspector] public static bool startStorm;
+
+    [HideInInspector] public static bool endOfStorm;
 
 	private void Awake()
 	{
@@ -25,7 +26,8 @@ public class GameManager : MonoBehaviour
 	}
 	void Start()
     {
-
+        startStorm = false;
+        endOfStorm = false;
     }
 
     // Update is called once per frame
@@ -42,24 +44,19 @@ public class GameManager : MonoBehaviour
     public static void resetSpawn()
 	{
         customPhysics player = FindObjectOfType<customPhysics>();
-        player.transform.position = respawnPos;
         Camera cam = FindObjectOfType<Camera>();
-        cam.transform.position = respawnPos;
-        
-        fuelManager.Instance.findThermo();
-	}
-    public static void resetTorches()
-	{
-        numTorches = 0;
-	}
-
-    public static void foundTorch()
-	{
-        numTorches--;
-        Debug.Log(numTorches);
-        if (numTorches <= 0)
+        TrailRenderer tr = player.GetComponentInChildren<TrailRenderer>();
+        if (cam == null || player == null)
 		{
-            sceneChanger.Instance.nextScene();
-		}
+            fuelManager.Instance.maxfuel = 1;
+            respawnPos = new Vector2(1.66f, 10.27f);
+		} else
+		{
+            tr.enabled = false;
+            player.transform.position = respawnPos;
+            cam.transform.position = respawnPos;
+            tr.enabled = true;
+        }
+
 	}
 }

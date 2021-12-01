@@ -37,10 +37,7 @@ public class iceBlock : MonoBehaviour
             {
                 if (!isCombusting)
                 {
-                    isCombusting = true;
-                    fuelManager.Instance.lose(1);
                     StartCoroutine(Combust());
-                    currTime = 0;
                 }
             }
         }
@@ -51,15 +48,6 @@ public class iceBlock : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             inContact = true;
-        }
-        if (collision.gameObject.tag == "fireball")
-        {
-            if (!isCombusting)
-            {
-                isCombusting = true;
-                StartCoroutine(Combust());
-                //Destroy(collision.gameObject);
-            }
         }
     }
 
@@ -72,43 +60,49 @@ public class iceBlock : MonoBehaviour
         }
     }
 
-    IEnumerator Combust()
+    public IEnumerator Combust()
     {
-        anim.SetTrigger("burn");
-        if (HP == 2)
-        {
-            musicManager.Instance.playSource("IceCrack");
-            while (anim.GetCurrentAnimatorStateInfo(0).IsName("Default"))
+        if (!isCombusting)
+		{
+            isCombusting = true;
+            fuelManager.Instance.lose(1);
+            currTime = 0;
+            anim.SetTrigger("burn");
+            if (HP == 2)
             {
-                yield return null;
+                musicManager.Instance.playSource("IceCrack");
+                while (anim.GetCurrentAnimatorStateInfo(0).IsName("Default"))
+                {
+                    yield return null;
+                }
+                while (anim.GetCurrentAnimatorStateInfo(0).IsName("iceBlock") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1)
+                {
+                    yield return null;
+                }
             }
-            while (anim.GetCurrentAnimatorStateInfo(0).IsName("iceBlock") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1)
+            else if (HP == 1)
             {
-                yield return null;
+                musicManager.Instance.playSource("Splat");
+                while (anim.GetCurrentAnimatorStateInfo(0).IsName("iceBlock"))
+                {
+                    yield return null;
+                }
+                while (anim.GetCurrentAnimatorStateInfo(0).IsName("iceBreak") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1)
+                {
+                    yield return null;
+                }
             }
-        } else if (HP == 1)
-		{
-            rb.isKinematic = true;
-            hitbox.enabled = false;
-            musicManager.Instance.playSource("Splat");
-            while (anim.GetCurrentAnimatorStateInfo(0).IsName("iceBlock"))
+            isCombusting = false;
+            if (HP > 1)
             {
-                yield return null;
-			}
-            while (anim.GetCurrentAnimatorStateInfo(0).IsName("iceBreak") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1)
-			{
-                yield return null;
-			}
-		}
-        isCombusting = false;
-        if (HP > 1)
-		{
-            HP--;
-		} else
-		{
-            respawn.Hide();
-            rb.isKinematic = false;
-            HP = cost;
+                HP--;
+            }
+            else
+            {
+                respawn.Hide();
+                HP = cost;
+            }
         }
+        
     }
 }

@@ -6,6 +6,7 @@ public class platform : MonoBehaviour
 {
     // Start is called before the first frame update
     customPhysics player;
+
     void Start()
     {
         player = FindObjectOfType<customPhysics>();
@@ -24,4 +25,5 @@ public class platform : MonoBehaviour
             Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<CompositeCollider2D>(), false);
         }
     }
+
 }

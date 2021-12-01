@@ -6,14 +6,21 @@ public class snowBlock : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] float dps;
+    [SerializeField] float snowSpeed;
+    [SerializeField] float origSpeed;
     float currTime;
     float timeToInflict;
     bool inContact;
+    move player;
+    playerParticles pPS;
     void Start()
     {
         timeToInflict = 1f / dps;
         currTime = 0f;
         inContact = false;
+        pPS = FindObjectOfType<playerParticles>();
+        player = FindObjectOfType<move>();
+        origSpeed = player.speed;
     }
 
     // Update is called once per frame
@@ -37,7 +44,9 @@ public class snowBlock : MonoBehaviour
             if (collision.gameObject.GetComponent<customPhysics>().OnTopOf() == gameObject)
 			{
                 inContact = true;
+                player.speed = snowSpeed;
                 currTime = 0f;
+                pPS.Play("snowStep");
             }
         }
     }
@@ -47,7 +56,9 @@ public class snowBlock : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             inContact = false;
+            player.speed = origSpeed;
             currTime = 0f;
+            pPS.Pause("snowStep");
         }
     }
 }

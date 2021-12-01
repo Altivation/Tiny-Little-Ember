@@ -12,6 +12,7 @@ public class Respawn : MonoBehaviour
     [SerializeField] float regen = 10f;
     [SerializeField] float extraRegen = 5f;
     [SerializeField] bool neverRespawn;
+    public bool revealed = true;
     [HideInInspector] public bool hidden;
     float currTime = 0f;
     float bonTime = 0f;
@@ -33,14 +34,14 @@ public class Respawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hidden && !neverRespawn)
+        if (hidden && !neverRespawn && revealed)
 		{
             if (currTime < regen)
 			{
                 currTime += Time.deltaTime;
 			} else
 			{
-                if (!onCamera())
+                if (!onCamera() || extraRegen == 0)
 				{
                     bonTime += Time.deltaTime;
                     if (bonTime > extraRegen)
@@ -54,7 +55,6 @@ public class Respawn : MonoBehaviour
 
 	public void Hide()
 	{
-        Debug.Log("hitbox");
         hitbox.enabled = false;
         sr.enabled = false;
         hidden = true;

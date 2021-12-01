@@ -11,8 +11,16 @@ public class fuelManager : MonoBehaviour
     Thermometer thermo; //temp
 	public void Awake()
 	{
-        Instance = this;
-	}
+        if (!Instance)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 	void Start()
     {
         fuel = maxfuel;
@@ -23,7 +31,10 @@ public class fuelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (fuel <= 0)
+		{
+            sceneChanger.Instance.resetScene(); 
+        }
     }
 
     public void findThermo()
@@ -76,8 +87,8 @@ public class fuelManager : MonoBehaviour
         if (fuel <= 0)
 		{
             fuel = 0;
-            sceneChanger.Instance.resetScene();
         }
         thermo.changeThermo();//temp
+        FindObjectOfType<playerParticles>().Play("fireSpark");
 	}
 }

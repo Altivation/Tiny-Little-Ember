@@ -21,11 +21,12 @@ public class CoyoteTime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!player.onGround && Mathf.Abs(player.rb.velocity.y) < 0.01f && !JUMP.hasJumped && !coyoteReady && JUMP.wasGrounded)
+        if (!player.onGround && !JUMP.hasJumped && !coyoteReady && JUMP.wasGrounded)
 		{
             coyoteReady = true;
             currTime = 0;
             JUMP.weirdJump = true;
+            JUMP.wasGrounded = false;
         }
 
         if (coyoteReady)

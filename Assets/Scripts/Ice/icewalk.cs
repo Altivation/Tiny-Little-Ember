@@ -6,9 +6,11 @@ public class icewalk : MonoBehaviour
 {
     // Start is called before the first frame update
     iceAI parent;
+	iceEnemyAnim parentAnim;
 	private void Awake()
 	{
 		parent = GetComponentInParent<iceAI>();
+		parentAnim = GetComponentInParent<iceEnemyAnim>();
 	}
 	void Start()
     {
@@ -25,9 +27,17 @@ public class icewalk : MonoBehaviour
 	{
 		if (parent.state == "move" && collision.gameObject != parent.gameObject)
 		{
-			if (collision.gameObject.tag == "solid" || collision.gameObject.tag == "Player")
+			if (collision.gameObject.layer == LayerMask.NameToLayer("Solid") || collision.gameObject.tag == "IceCube" || collision.gameObject.tag == "Player")
 			{
 				parent.SwitchDirections();
+
+				if (collision.gameObject.tag == "Player")
+				{
+					if (!parentAnim.isCombusting)
+					{
+						StartCoroutine(parent.GetComponent<iceEnemyAnim>().Combust());
+					}
+				}
 			}
 		} 
 	}

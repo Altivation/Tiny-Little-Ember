@@ -10,8 +10,10 @@ public class hearth : MonoBehaviour
     bool inContact;
 	float currTime;
 	float timeToRegenOne;
+	ParticleSystem ps;
     void Start()
     {
+		ps = GetComponentInChildren<ParticleSystem>();
         inContact = false;
 		currTime = 0f;
 		timeToRegenOne = 1.0f / rps;
@@ -23,6 +25,8 @@ public class hearth : MonoBehaviour
         if (inContact)
 		{
 			currTime += Time.deltaTime;
+			//musicManager.Instance.playSource("Heal");
+			//musicManager.Instance.playSource("Hearth");
 			if (currTime > timeToRegenOne)
 			{
 				fuelManager.Instance.capGain(1);
@@ -36,7 +40,10 @@ public class hearth : MonoBehaviour
 		if (collision.gameObject.tag == "Player")
 		{
             inContact = true;
+            musicManager.Instance.playSource("Heal");
+            musicManager.Instance.playSource("Hearth");
 			GameManager.setSpawn(transform.position);
+			ps.Play();
 		}
 	}
 
@@ -44,7 +51,10 @@ public class hearth : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Player")
 		{
+			ps.Stop();
 			inContact = false;
+			musicManager.Instance.pauseSource("Heal");
+			musicManager.Instance.pauseSource("Hearth");
 			currTime = 0f;
 		}
 	}
